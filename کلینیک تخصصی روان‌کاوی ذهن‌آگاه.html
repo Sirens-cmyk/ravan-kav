@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کلینیک تخصصی روان‌کاوی و روان‌پویشی ذهن‌آگاه</title>
+    
+    <!-- بارگذاری فونت فارسی وزیرمتن از CDN -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    
+    <!-- بارگذاری Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- بارگذاری آیکون‌های Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- پیکربندی پالت رنگی و فونت سفارشی در Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                    },
+                    colors: {
+                        sage: {
+                            50: '#f4f7f5',
+                            100: '#e3ebe6',
+                            200: '#c6d7cd',
+                            500: '#5a826c',
+                            600: '#466855',
+                            700: '#385344',
+                            900: '#213128',
+                        },
+                        sand: {
+                            50: '#fbfaf8',
+                            100: '#f5f2eb',
+                            200: '#e8e2d2',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: #fbfaf8;
+            color: #1e293b;
+        }
+        /* افکت شیشه‌ای برای منوی ناوبری ثابت */
+        .glass-nav {
+            background: rgba(251, 250, 248, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        /* حذف فلش پیش‌فرض تگ summary در مرورگرها */
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-sage-200 selection:text-sage-900 overflow-x-hidden">
+
+    <!-- ۱. هدر ثابت شیشه‌ای و منوی ناوبری -->
+    <header class="fixed top-0 inset-x-0 z-50 glass-nav border-b border-sage-200/60 transition-all">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- لوگو و عنوان کلینیک -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-2xl bg-sage-600 text-white flex items-center justify-center shadow-sm group-hover:bg-sage-700 transition">
+                        <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <span class="block text-lg font-extrabold text-sage-900 leading-tight">کلینیک ذهن‌آگاه</span>
+                        <span class="block text-xs text-sage-600 font-medium">مرکز تخصصی روان‌کاوی و روان‌پویشی</span>
+                    </div>
+                </a>
+
+                <!-- لینک‌های ناوبری نسخه دسکتاپ -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                    <a href="#about" class="hover:text-sage-600 transition">درباره کلینیک</a>
+                    <a href="#services" class="hover:text-sage-600 transition">حوزه‌های تخصصی</a>
+                    <a href="#doctors" class="hover:text-sage-600 transition">پزشکان و درمانگران</a>
+                    <a href="#faq" class="hover:text-sage-600 transition">سوالات متداول</a>
+                    <a href="#contact" class="hover:text-sage-600 transition">تماس با ما</a>
+                </nav>
+
+                <!-- دکمه رزرو جلسه و دکمه منوی موبایل -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <a href="#booking" class="bg-sage-600 hover:bg-sage-700 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2.5 rounded-xl shadow-sm hover:shadow transition flex items-center gap-2">
+                        <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                        <span>رزرو جلسه</span>
+                    </a>
+                    <button id="mobileMenuBtn" type="button" aria-label="باز کردن منو" class="md:hidden p-2.5 rounded-xl text-slate-700 hover:bg-sage-100 transition">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- منوی کشویی مخصوص موبایل -->
+        <div id="mobileMenu" class="hidden md:hidden bg-sand-50 border-b border-sage-200 px-4 pt-2 pb-5 space-y-2 shadow-lg">
+            <a href="#about" class="mobile-link block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-sage-100 hover:text-sage-700">درباره کلینیک</a>
+            <a href="#services" class="mobile-link block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-sage-100 hover:text-sage-700">حوزه‌های تخصصی</a>
+            <a href="#doctors" class="mobile-link block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-sage-100 hover:text-sage-700">پزشکان و درمانگران</a>
+            <a href="#faq" class="mobile-link block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-sage-100 hover:text-sage-700">سوالات متداول</a>
+            <a href="#contact" class="mobile-link block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-sage-100 hover:text-sage-700">تماس با ما</a>
+        </div>
+    </header>
+
+    <!-- ۲. بخش اصلی (Hero Section) -->
+    <section class="pt-32 pb-20 md:pt-40 md:pb-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <!-- هاله‌های نوری ملایم پس‌زمینه -->
+        <div class="absolute top-20 left-10 w-72 h-72 bg-sage-200/40 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-sand-200/70 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-6xl mx-auto grid md:grid-cols-12 gap-12 items-center">
+            <!-- ستون متن، تیتر و آمار کلینیک -->
+            <div class="md:col-span-7 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-100 text-sage-700 text-xs font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-sage-600 animate-pulse"></span>
+                    فضایی امن، محرمانه و علمی برای کشف خود
+                </div>
+                
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight">
+                    سفری به اعماق ناخودآگاه؛<br>
+                    <span class="text-sage-600">بازآفرینی آرامش</span> در زندگی
+                </h1>
+                
+                <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl">
+                    در کلینیک تخصصی روان‌کاوی ذهن‌آگاه، با همراهی برجسته‌ترین روان‌کاوان و روان‌پزشکان، ریشه‌های تعارضات درونی، اضطراب‌های مزمن و الگوهای تکراری روابط را شناسایی و به صورت بنیادین درمان می‌کنیم.
+                </p>
+                
+                <!-- دکمه‌های اقدام (CTA) -->
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                    <a href="#booking" class="bg-sage-600 hover:bg-sage-700 text-white font-semibold px-7 py-3.5 rounded-2xl shadow-md hover:shadow-lg transition flex items-center gap-2">
+                        <span>دریافت نوبت مشاوره</span>
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#doctors" class="bg-white hover:bg-sage-50 text-slate-700 border border-slate-200 font-semibold px-7 py-3.5 rounded-2xl transition">
+                        آشنایی با درمانگران
+                    </a>
+                </div>
+
+                <!-- آمار کلینیک -->
+                <div class="grid grid-cols-3 gap-4 sm:gap-6 pt-8 border-t border-slate-200/80 max-w-lg">
+                    <div>
+                        <span class="block text-xl sm:text-2xl font-extrabold text-sage-700">+۱۲ سال</span>
+                        <span class="text-xs text-slate-500">تجربه تخصصی بالینی</span>
+                    </div>
+                    <div>
+                        <span class="block text-xl sm:text-2xl font-extrabold text-sage-700">۸ متخصص</span>
+                        <span class="text-xs text-slate-500">عضو انجمن روان‌کاوی</span>
+                    </div>
+                    <div>
+                        <span class="block text-xl sm:text-2xl font-extrabold text-sage-700">۱۰۰٪</span>
+                        <span class="text-xs text-slate-500">حفظ حریم خصوصی</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ستون تصویر فضای کلینیک و کارت شناور -->
+            <div class="md:col-span-5">
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-sage-100">
+                    <img 
+                        src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&w=800&q=80" 
+                        onerror="this.src='https://placehold.co/600x700/e3ebe6/385344?text=کلینیک+ذهن‌آگاه'"
+                        alt="فضای آرام کلینیک روان‌کاوی ذهن‌آگاه" 
+                        class="w-full h-[420px] object-cover"
+                    >
+                    <!-- کارت شناور جلسات حضوری و آنلاین -->
+                    <div class="absolute bottom-4 inset-x-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-sage-100">
+                        <div class="flex items-center gap-3.5">
+                            <div class="w-11 h-11 rounded-xl bg-sage-100 text-sage-700 flex items-center justify-center shrink-0">
+                                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-800">جلسات حضوری و آنلاین</p>
+                                <p class="text-xs text-slate-500 mt-0.5">امکان برگزاری جلسات برای مراجعین داخل و خارج کشور</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ۳. بخش درباره کلینیک و مزایای روان‌کاوی -->
+    <section id="about" class="py-20 bg-white border-y border-slate-100 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <!-- ستون توضیحات -->
+            <div class="space-y-5">
+                <span class="inline-block text-xs font-bold tracking-wider text-sage-600 bg-sage-50 px-3 py-1 rounded-full">چرا روان‌کاوی؟</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">درمان ریشه‌ای، فراتر از تسکین موقت علائم</h2>
+                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                    بسیاری از مشکلات هیجانی، افسردگی‌های مزمن و شکست‌های مکرر در روابط عاطفی یا شغلی، ریشه در بخش‌های ناخودآگاه ذهن و تجربیات اولیه زندگی ما دارند. رویکرد ما در کلینیک ذهن‌آگاه بر پایه روان‌کاوی کلاسیک و روان‌پویشی مدرن استوار است تا به جای سرکوب موقت نشانه، ساختار شخصیت به تعادل پایدار برسد.
+                </p>
+                <ul class="space-y-3 pt-2 text-sm text-slate-700">
+                    <li class="flex items-center gap-2.5">
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-sage-600 shrink-0"></i>
+                        <span>اتاق‌های درمان آکوستیک و طراحی‌شده برای آرامش کامل مراجع</span>
+                    </li>
+                    <li class="flex items-center gap-2.5">
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-sage-600 shrink-0"></i>
+                        <span>ارزیابی اولیه دقیق و ارجاع به درمانگر متناسب با شرایط شما</span>
+                    </li>
+                    <li class="flex items-center gap-2.5">
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-sage-600 shrink-0"></i>
+                        <span>پایبندی کامل به اصول اخلاق حرفه‌ای و رازداری مطلق</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- ۴ کارت ویژگی کلینیک -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-sage-50 p-6 rounded-3xl space-y-2.5 border border-sage-100">
+                    <div class="w-11 h-11 rounded-2xl bg-white text-sage-600 flex items-center justify-center shadow-sm">
+                        <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 pt-1">همدلی بدون قضاوت</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">فضایی امن و پذیرنده برای بیان آزادانه عمیق‌ترین افکار و احساسات بدون ترس از قضاوت شدن.</p>
+                </div>
+
+                <div class="bg-sand-100 p-6 rounded-3xl space-y-2.5 sm:mt-6 border border-sand-200/70">
+                    <div class="w-11 h-11 rounded-2xl bg-white text-sage-700 flex items-center justify-center shadow-sm">
+                        <i data-lucide="book-open-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 pt-1">رویکرد علمی</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">بهره‌گیری از جدیدترین متدهای روان‌پویشی و نظارت مستمر علمی و سوپرویژن تخصصی.</p>
+                </div>
+
+                <div class="bg-sand-100 p-6 rounded-3xl space-y-2.5 border border-sand-200/70">
+                    <div class="w-11 h-11 rounded-2xl bg-white text-sage-700 flex items-center justify-center shadow-sm">
+                        <i data-lucide="clock" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 pt-1">نظم و تداوم درمان</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">برنامه‌ریزی دقیق جلسات هفتگی در چارچوب استاندارد متناسب با روند درمانی هر فرد.</p>
+                </div>
+
+                <div class="bg-sage-50 p-6 rounded-3xl space-y-2.5 sm:mt-6 border border-sage-100">
+                    <div class="w-11 h-11 rounded-2xl bg-white text-sage-600 flex items-center justify-center shadow-sm">
+                        <i data-lucide="globe" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 pt-1">پشتیبانی آنلاین</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">برگزاری جلسات تصویری با کیفیت بالا و امنیت کامل برای فارسی‌زبانان سراسر دنیا.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ۴. بخش خدمات تخصصی کلینیک -->
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
+                <span class="text-xs font-bold text-sage-600 bg-sage-100/70 px-3 py-1 rounded-full">خدمات تخصصی ما</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">حوزه‌های درمان و مشاوره</h2>
+                <p class="text-sm text-slate-600">خدمات کلینیک به صورت فردی، زوجی و نوجوان در محیطی آرام ارائه می‌شود.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- کارت خدمت ۱ -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 group">
+                    <div class="w-12 h-12 rounded-2xl bg-sage-50 text-sage-600 flex items-center justify-center mb-5 group-hover:bg-sage-600 group-hover:text-white transition">
+                        <i data-lucide="user" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">روان‌کاوی فردی</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">تحلیل عمیق ساختار شخصیت، رویاها، اضطراب‌های مزمن، افسردگی و کشف ریشه‌های ناخودآگاه رفتارها.</p>
+                </div>
+
+                <!-- کارت خدمت ۲ -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 group">
+                    <div class="w-12 h-12 rounded-2xl bg-sage-50 text-sage-600 flex items-center justify-center mb-5 group-hover:bg-sage-600 group-hover:text-white transition">
+                        <i data-lucide="users" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">زوج‌درمانی تحلیلی</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">بررسی تعارضات زناشویی، الگوهای دلبستگی ناایمن و بهبود صمیمیت و گفت‌وگوی سازنده میان زوجین.</p>
+                </div>
+
+                <!-- کارت خدمت ۳ -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 group">
+                    <div class="w-12 h-12 rounded-2xl bg-sage-50 text-sage-600 flex items-center justify-center mb-5 group-hover:bg-sage-600 group-hover:text-white transition">
+                        <i data-lucide="sparkles" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">روان‌درمانی نوجوان</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">همراهی تخصصی با نوجوانان در عبور از بحران‌های هویتی، اضطراب تحصیلی و چالش‌های ارتباطی با خانواده.</p>
+                </div>
+
+                <!-- کارت خدمت ۴ -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 group">
+                    <div class="w-12 h-12 rounded-2xl bg-sage-50 text-sage-600 flex items-center justify-center mb-5 group-hover:bg-sage-600 group-hover:text-white transition">
+                        <i data-lucide="stethoscope" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">مشاوره روان‌پزشکی</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">ارزیابی دقیق پزشکی و در صورت نیاز، تلفیق دارودرمانی هدفمند در کنار فرآیند روان‌درمانی تحلیلی.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ۵. بخش معرفی پزشکان و درمانگران -->
+    <section id="doctors" class="py-20 bg-sage-50/80 border-y border-sage-100 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
+                <span class="text-xs font-bold text-sage-600 bg-white px-3 py-1 rounded-full border border-sage-200/60">تیم درمانی کلینیک</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">پزشکان و روان‌کاوان مجموعه</h2>
+                <p class="text-sm text-slate-600">با کلیک بر روی دکمه رزرو هر متخصص، نام درمانگر به صورت خودکار در فرم رزرو انتخاب می‌شود.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- کارت پزشک ۱ -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-100 flex flex-col">
+                    <div class="relative h-64 bg-sage-100">
+                        <img 
+                            src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80" 
+                            onerror="this.src='https://placehold.co/600x500/e3ebe6/385344?text=دکتر+سارا+رادمنش'"
+                            alt="دکتر سارا رادمنش" 
+                            class="w-full h-full object-cover object-top"
+                        >
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-5">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <h3 class="text-lg font-bold text-slate-900">دکتر سارا رادمنش</h3>
+                                <span class="text-[11px] bg-sage-100 text-sage-700 px-2.5 py-0.5 rounded-full font-semibold">مؤسس و روان‌کاو</span>
+                            </div>
+                            <p class="text-xs text-sage-600 font-semibold mb-3">دکترای تخصصی روان‌شناسی بالینی و روان‌کاو</p>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                بیش از ۱۴ سال سابقه بالینی در روان‌کاوی بزرگسالان، درمان اختلالات شخصیت، افسردگی مقاوم و تروماهای دوران کودکی.
+                            </p>
+                            <div class="mt-3 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[11px] text-slate-500">
+                                <i data-lucide="award" class="w-3.5 h-3.5 text-sage-600"></i>
+                                <span>شماره نظام روانشناسی: ۱۲۴۵۸</span>
+                            </div>
+                        </div>
+                        <button type="button" onclick="selectDoctor('دکتر سارا رادمنش')" class="w-full py-3 px-4 bg-sage-50 hover:bg-sage-600 text-sage-700 hover:text-white font-semibold text-xs rounded-2xl transition flex items-center justify-center gap-2 cursor-pointer">
+                            <span>رزرو وقت با دکتر رادمنش</span>
+                            <i data-lucide="calendar" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- کارت پزشک ۲ -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-100 flex flex-col">
+                    <div class="relative h-64 bg-sage-100">
+                        <img 
+                            src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80" 
+                            onerror="this.src='https://placehold.co/600x500/e3ebe6/385344?text=دکتر+آرش+کیانی'"
+                            alt="دکتر آرش کیانی" 
+                            class="w-full h-full object-cover object-top"
+                        >
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-5">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <h3 class="text-lg font-bold text-slate-900">دکتر آرش کیانی</h3>
+                                <span class="text-[11px] bg-sand-100 text-slate-700 px-2.5 py-0.5 rounded-full font-semibold">روان‌پزشک</span>
+                            </div>
+                            <p class="text-xs text-sage-600 font-semibold mb-3">متخصص اعصاب و روان و روان‌پویشی</p>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                فارغ‌التحصیل دانشگاه علوم پزشکی تهران. تمرکز ویژه بر درمان اختلالات اضطرابی، وسواس و روان‌درمانی پویشی فشرده (ISTDP).
+                            </p>
+                            <div class="mt-3 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[11px] text-slate-500">
+                                <i data-lucide="award" class="w-3.5 h-3.5 text-sage-600"></i>
+                                <span>شماره نظام پزشکی: ۹۸۳۴۲</span>
+                            </div>
+                        </div>
+                        <button type="button" onclick="selectDoctor('دکتر آرش کیانی')" class="w-full py-3 px-4 bg-sage-50 hover:bg-sage-600 text-sage-700 hover:text-white font-semibold text-xs rounded-2xl transition flex items-center justify-center gap-2 cursor-pointer">
+                            <span>رزرو وقت با دکتر کیانی</span>
+                            <i data-lucide="calendar" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- کارت پزشک ۳ -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-100 flex flex-col">
+                    <div class="relative h-64 bg-sage-100">
+                        <img 
+                            src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=600&q=80" 
+                            onerror="this.src='https://placehold.co/600x500/e3ebe6/385344?text=دکتر+نگین+فرهادی'"
+                            alt="دکتر نگین فرهادی" 
+                            class="w-full h-full object-cover object-top"
+                        >
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-5">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <h3 class="text-lg font-bold text-slate-900">دکتر نگین فرهادی</h3>
+                                <span class="text-[11px] bg-sage-100 text-sage-700 px-2.5 py-0.5 rounded-full font-semibold">زوج‌درمانگر</span>
+                            </div>
+                            <p class="text-xs text-sage-600 font-semibold mb-3">روان‌درمانگر تحلیلی و مشاور زوجین</p>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                متخصص در حوزه روابط عاطفی، زوج‌درمانی با رویکرد دلبستگی و روابط موضوعی، و مشاوره تخصصی پیش از ازدواج.
+                            </p>
+                            <div class="mt-3 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[11px] text-slate-500">
+                                <i data-lucide="award" class="w-3.5 h-3.5 text-sage-600"></i>
+                                <span>شماره نظام روانشناسی: ۱۵۹۲۰</span>
+                            </div>
+                        </div>
+                        <button type="button" onclick="selectDoctor('دکتر نگین فرهادی')" class="w-full py-3 px-4 bg-sage-50 hover:bg-sage-600 text-sage-700 hover:text-white font-semibold text-xs rounded-2xl transition flex items-center justify-center gap-2 cursor-pointer">
+                            <span>رزرو وقت با دکتر فرهادی</span>
+                            <i data-lucide="calendar" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ۶. بخش فرم رزرو آنلاین نوبت و سوالات متداول -->
+    <section id="booking" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-start">
+            
+            <!-- ستون فرم رزرو نوبت -->
+            <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200/80">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">درخواست رزرو جلسه ارزیابی</h2>
+                    <span id="modeBadge" class="text-[11px] px-3 py-1 rounded-full bg-sand-100 text-slate-600 font-medium">حالت پیش‌نمایش (دمو)</span>
+                </div>
+                <p class="text-xs text-slate-500 mb-6 leading-relaxed">
+                    اطلاعات زیر را تکمیل کنید؛ همکاران پذیرش کلینیک در کمتر از ۲ ساعت جهت هماهنگی نهایی با شما تماس می‌گیرند.
+                </p>
+
+                <form id="bookingForm" class="space-y-4">
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="fullName" class="block text-xs font-semibold text-slate-700 mb-1.5">نام و نام خانوادگی <span class="text-rose-500">*</span></label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="مثلاً: علی محمدی" class="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm focus:outline-none focus:border-sage-500 focus:ring-2 focus:ring-sage-200 transition">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-xs font-semibold text-slate-700 mb-1.5">شماره تماس (واتساپ / تماس) <span class="text-rose-500">*</span></label>
+                            <input type="tel" id="phone" name="phone" required placeholder="09120000000" dir="ltr" class="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm text-right focus:outline-none focus:border-sage-500 focus:ring-2 focus:ring-sage-200 transition">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="doctorSelect" class="block text-xs font-semibold text-slate-700 mb-1.5">انتخاب درمانگر</label>
+                            <select id="doctorSelect" name="doctor" class="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm bg-white focus:outline-none focus:border-sage-500 focus:ring-2 focus:ring-sage-200 transition">
+                                <option value="پیشنهاد کلینیک (ارزیابی اولیه)">پیشنهاد کلینیک (پس از ارزیابی اولیه)</option>
+                                <option value="دکتر سارا رادمنش">دکتر سارا رادمنش (روان‌کاو)</option>
+                                <option value="دکتر آرش کیانی">دکتر آرش کیانی (روان‌پزشک)</option>
+                                <option value="دکتر نگین فرهادی">دکتر نگین فرهادی (زوج‌درمانگر)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="sessionType" class="block text-xs font-semibold text-slate-700 mb-1.5">نوع برگزاری جلسه</label>
+                            <select id="sessionType" name="sessionType" class="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm bg-white focus:outline-none focus:border-sage-500 focus:ring-2 focus:ring-sage-200 transition">
+                                <option value="حضوری در کلینیک">حضوری در کلینیک</option>
+                                <option value="آنلاین (تصویری)">آنلاین (تصویری)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="notes" class="block text-xs font-semibold text-slate-700 mb-1.5">توضیحات کوتاه (اختیاری)</label>
+                        <textarea id="notes" name="notes" rows="3" placeholder="در صورت تمایل، موضوع کلی مراجعه یا بازه زمانی مناسب خود را بنویسید..." class="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm focus:outline-none focus:border-sage-500 focus:ring-2 focus:ring-sage-200 transition"></textarea>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="w-full bg-sage-600 hover:bg-sage-700 disabled:bg-sage-400 text-white font-bold py-3.5 rounded-2xl shadow-sm hover:shadow transition flex items-center justify-center gap-2 cursor-pointer">
+                        <span id="submitBtnText">ثبت درخواست نوبت</span>
+                        <i id="submitBtnIcon" data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                </form>
+
+                <!-- کادر پیام موفقیت -->
+                <div id="successMsg" class="hidden mt-5 p-4 rounded-2xl bg-sage-50 border border-sage-200 text-sage-900 text-xs sm:text-sm flex items-start gap-3">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-sage-600 shrink-0 mt-0.5"></i>
+                    <div>
+                        <p class="font-bold">درخواست شما با موفقیت ثبت شد!</p>
+                        <p class="text-sage-700 mt-1">کارشناسان پذیرش کلینیک ذهن‌آگاه به‌زودی برای هماهنگی نهایی با شما تماس خواهند گرفت.</p>
+                    </div>
+                </div>
+
+                <!-- کادر پیام خطا -->
+                <div id="errorMsg" class="hidden mt-5 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-900 text-xs sm:text-sm flex items-start gap-3">
+                    <i data-lucide="alert-circle" class="w-5 h-5 text-rose-600 shrink-0 mt-0.5"></i>
+                    <div>
+                        <p class="font-bold">خطا در ارسال اطلاعات</p>
+                        <p class="text-rose-700 mt-1">لطفاً اتصال اینترنت خود را بررسی کرده و مجدداً تلاش کنید یا با شماره پذیرش کلینیک تماس بگیرید.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ستون سوالات متداول (آکاردئون) -->
+            <div id="faq" class="lg:col-span-5 space-y-4">
+                <div class="mb-2">
+                    <span class="text-xs font-bold text-sage-600">راهنمای مراجعین</span>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">سوالات متداول</h3>
+                </div>
+                
+                <details class="group bg-white p-5 rounded-3xl border border-slate-200/80 open:border-sage-300 transition shadow-sm" open>
+                    <summary class="flex justify-between items-center font-bold text-sm text-slate-800 cursor-pointer list-none">
+                        <span>مدت زمان و تعداد جلسات روان‌کاوی چقدر است؟</span>
+                        <span class="w-7 h-7 rounded-full bg-sage-50 text-sage-700 flex items-center justify-center shrink-0 group-open:rotate-180 transition">
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </span>
+                    </summary>
+                    <p class="text-xs text-slate-600 mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+                        هر جلسه ۴۵ تا ۵۰ دقیقه زمان می‌برد. در روان‌کاوی کلاسیک و روان‌پویشی، جلسات معمولاً به صورت ۱ تا ۳ بار در هفته برگزار می‌شوند و طول دوره درمان به عمق مسائل و اهداف درمانی مراجع بستگی دارد.
+                    </p>
+                </details>
+
+                <details class="group bg-white p-5 rounded-3xl border border-slate-200/80 open:border-sage-300 transition shadow-sm">
+                    <summary class="flex justify-between items-center font-bold text-sm text-slate-800 cursor-pointer list-none">
+                        <span>چطور بفهمم کدام درمانگر برای من مناسب‌تر است؟</span>
+                        <span class="w-7 h-7 rounded-full bg-sage-50 text-sage-700 flex items-center justify-center shrink-0 group-open:rotate-180 transition">
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </span>
+                    </summary>
+                    <p class="text-xs text-slate-600 mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+                        اگر در انتخاب درمانگر تردید دارید، گزینه «پیشنهاد کلینیک (پس از ارزیابی اولیه)» را در فرم رزرو انتخاب کنید تا بر اساس شرح حال اولیه، مناسب‌ترین متخصص به شما معرفی شود.
+                    </p>
+                </details>
+
+                <details class="group bg-white p-5 rounded-3xl border border-slate-200/80 open:border-sage-300 transition shadow-sm">
+                    <summary class="flex justify-between items-center font-bold text-sm text-slate-800 cursor-pointer list-none">
+                        <span>آیا جلسات آنلاین به اندازه جلسات حضوری مؤثرند؟</span>
+                        <span class="w-7 h-7 rounded-full bg-sage-50 text-sage-700 flex items-center justify-center shrink-0 group-open:rotate-180 transition">
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </span>
+                    </summary>
+                    <p class="text-xs text-slate-600 mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+                        بله، پژوهش‌های بالینی متعدد نشان داده‌اند که روان‌درمانی تحلیلی آنلاین در چارچوب استاندارد و فضای خصوصی، اثربخشی بسیار بالایی دارد و برای افراد ساکن سایر شهرها یا خارج از کشور ایده‌آل است.
+                    </p>
+                </details>
+
+                <details class="group bg-white p-5 rounded-3xl border border-slate-200/80 open:border-sage-300 transition shadow-sm">
+                    <summary class="flex justify-between items-center font-bold text-sm text-slate-800 cursor-pointer list-none">
+                        <span>اطلاعات و صحبت‌های جلسات تا چه حد محرمانه می‌ماند؟</span>
+                        <span class="w-7 h-7 rounded-full bg-sage-50 text-sage-700 flex items-center justify-center shrink-0 group-open:rotate-180 transition">
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </span>
+                    </summary>
+                    <p class="text-xs text-slate-600 mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+                        حفظ اسرار مراجعین خط قرمز اخلاقی و قانونی کلینیک ذهن‌آگاه است. تمامی پرونده‌ها کدگذاری شده و هیچ اطلاعاتی بدون اجازه کتبی مراجع در اختیار شخص ثالث قرار نمی‌گیرد.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ۷. فوتر کامل با آدرس، شماره تماس و ساعات کاری -->
+    <footer id="contact" class="bg-sage-900 text-sage-100 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 pb-12 border-b border-sage-700/60">
+            <!-- ستون اول: معرفی کلینیک -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-3 text-white">
+                    <div class="w-10 h-10 rounded-xl bg-sage-700 flex items-center justify-center">
+                        <i data-lucide="brain-circuit" class="w-6 h-6 text-sage-200"></i>
+                    </div>
+                    <span class="text-lg font-extrabold">کلینیک ذهن‌آگاه</span>
+                </div>
+                <p class="text-xs text-sage-200/80 leading-relaxed">
+                    مرکز تخصصی روان‌کاوی، روان‌پویشی و مشاوره فردی و زوجین با مجوز رسمی از سازمان نظام روانشناسی و مشاوره جمهوری اسلامی ایران.
+                </p>
+            </div>
+
+            <!-- ستون دوم: اطلاعات تماس، آدرس و ساعات کاری -->
+            <div class="space-y-3.5 text-xs">
+                <h4 class="text-sm font-bold text-white mb-2">اطلاعات تماس و آدرس</h4>
+                <p class="flex items-start gap-2.5 text-sage-200">
+                    <i data-lucide="map-pin" class="w-4 h-4 shrink-0 mt-0.5 text-sage-400"></i>
+                    <span>تهران، خیابان شریعتی، بالاتر از ظفر، کوچه بهار، پلاک ۱۲، واحد ۴</span>
+                </p>
+                <p class="flex items-center gap-2.5 text-sage-200">
+                    <i data-lucide="phone" class="w-4 h-4 shrink-0 text-sage-400"></i>
+                    <span dir="ltr">۰۲۱ - ۲۲۸۸۹۹۰۰ | ۰۹۱۲-۳۴۵۶۷۸۹</span>
+                </p>
+                <p class="flex items-start gap-2.5 text-sage-200">
+                    <i data-lucide="clock" class="w-4 h-4 shrink-0 mt-0.5 text-sage-400"></i>
+                    <span>شنبه تا چهارشنبه: ۹ صبح تا ۸ شب | پنج‌شنبه‌ها: ۹ صبح تا ۲ بعدازظهر</span>
+                </p>
+            </div>
+
+            <!-- ستون سوم: دسترسی سریع -->
+            <div class="space-y-3 text-xs">
+                <h4 class="text-sm font-bold text-white mb-2">دسترسی سریع</h4>
+                <div class="flex flex-col space-y-2.5 text-sage-200">
+                    <a href="#about" class="hover:text-white transition w-fit">درباره کلینیک و رویکرد درمانی</a>
+                    <a href="#services" class="hover:text-white transition w-fit">حوزه‌های تخصصی و خدمات</a>
+                    <a href="#doctors" class="hover:text-white transition w-fit">معرفی پزشکان و روان‌کاوان</a>
+                    <a href="#booking" class="hover:text-white transition w-fit">فرم رزرو آنلاین نوبت</a>
+                    <a href="#faq" class="hover:text-white transition w-fit">سوالات متداول مراجعین</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-sage-200/60">
+            <p>© ۱۴۰۵ کلینیک تخصصی روان‌کاوی ذهن‌آگاه - تمامی حقوق محفوظ است.</p>
+            <p>طراحی و پیاده‌سازی اختصاصی</p>
+        </div>
+    </footer>
+
+    <!-- اسکریپت‌های تعاملی صفحه و اتصال به Google Apps Script -->
+    <script>
+        // =========================================================================
+        // لینک Web App گوگل شیت (Google Apps Script)
+        // راهنما: لینک دریافتی از Deploy گوگل شیت را داخل کوتیشن زیر قرار دهید.
+        // اگر خالی ("") بماند، سایت در حالت پیش‌نمایش (دمو) به خوبی کار می‌کند.
+        // =========================================================================
+        const GOOGLE_SCRIPT_URL = "";
+
+        // فعال‌سازی آیکون‌های Lucide
+        lucide.createIcons();
+
+        // به‌روزرسانی نشانگر وضعیت اتصال فرم در بالای کارت رزرو
+        const modeBadge = document.getElementById('modeBadge');
+        if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.trim() !== "") {
+            modeBadge.textContent = "متصل به سیستم پذیرش آنلاین";
+            modeBadge.className = "text-[11px] px-3 py-1 rounded-full bg-sage-100 text-sage-700 font-semibold";
+        }
+
+        // مدیریت باز و بسته شدن منوی موبایل
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // بستن منوی موبایل هنگام کلیک روی لینک‌ها
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // انتخاب خودکار پزشک در فرم رزرو و اسکرول نرم به پایین صفحه
+        function selectDoctor(doctorName) {
+            const select = document.getElementById('doctorSelect');
+            select.value = doctorName;
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // مدیریت ارسال فرم رزرو نوبت (حالت دمو + اتصال به گوگل شیت)
+        const bookingForm = document.getElementById('bookingForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const submitBtnText = document.getElementById('submitBtnText');
+        const successMsg = document.getElementById('successMsg');
+        const errorMsg = document.getElementById('errorMsg');
+
+        bookingForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // پنهان کردن پیام‌های قبلی
+            successMsg.classList.add('hidden');
+            errorMsg.classList.add('hidden');
+
+            // نمایش حالت لودینگ روی دکمه
+            submitBtn.disabled = true;
+            submitBtnText.textContent = "در حال ارسال...";
+
+            // جمع‌آوری داده‌های فرم
+            const payload = {
+                fullName: document.getElementById('fullName').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                doctor: document.getElementById('doctorSelect').value,
+                sessionType: document.getElementById('sessionType').value,
+                notes: document.getElementById('notes').value.trim()
+            };
+
+            try {
+                if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.trim() === "") {
+                    // شبیه‌سازی ارسال در حالت پیش‌نمایش (دمو)
+                    await new Promise(resolve => setTimeout(resolve, 900));
+                    successMsg.classList.remove('hidden');
+                    bookingForm.reset();
+                } else {
+                    // ارسال واقعی اطلاعات به Google Apps Script با متد POST
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'text/plain;charset=utf-8',
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    successMsg.classList.remove('hidden');
+                    bookingForm.reset();
+                }
+
+                // مخفی شدن خودکار پیام موفقیت پس از ۷ ثانیه
+                setTimeout(() => {
+                    successMsg.classList.add('hidden');
+                }, 7000);
+
+            } catch (err) {
+                console.error("خطا در ثبت نوبت:", err);
+                errorMsg.classList.remove('hidden');
+            } finally {
+                // بازگرداندن دکمه به وضعیت عادی
+                submitBtn.disabled = false;
+                submitBtnText.textContent = "ثبت درخواست نوبت";
+            }
+        });
+    </script>
+</body>
+</html>
